@@ -10,14 +10,30 @@ const app = express();
 const PORT = 4000;
 
 // Middlewares
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, Content-Type, X-Auth-Token"
+  );
+  next();
+});
 app.use(express.json());
 
 // Connect to DB
 mongoose.connect(
   process.env.DB_CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log("Connected to DB");
+  (err) => {
+    if (err == null) {
+      console.log("Connected to DB");
+    } else {
+      console.log(err);
+    }
   }
 );
 
@@ -72,7 +88,7 @@ function save2DB(val) {
 
 function checkbigLink(bigLink) {
   return new Promise(async (resolve, reject) => {
-    LinkModel.find({ bigLink: bigLink }, (err, result) => {
+    LinkModel.find({ bigLink }, (err, result) => {
       if (err) reject(err);
       if (result) {
         console.log("already saved");
