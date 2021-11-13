@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #9966cc;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.input {
+  display: flex;
+}
+#input {
+  border: 1px solid #000;
+  padding: 10px;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  outline: none;
+  position: relative;
+}
+#btn {
+  border-radius: 5px;
+  padding: 14px;
+  border: 1px solid #000;
+  /* transform: translateY(-2px); */
+  cursor: pointer;
+}
+.output {
+  margin-top: 1rem;
+}
