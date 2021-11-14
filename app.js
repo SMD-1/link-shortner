@@ -53,9 +53,9 @@ app.post("/shorten", async (req, res) => {
   const shortlink = shortify(bigLink);
   try {
     const dbshortLink = await save2DB({ bigLink, shortlink });
-    console.log(`https://dan.fd/${dbshortLink}`);
+    // console.log(`https://dan.fd/${dbshortLink}`);
 
-    res.send(`https://dan.fd/${dbshortLink}`);
+    res.send(dbshortLink);
   } catch (err) {
     res.status(400).send(err);
   }
